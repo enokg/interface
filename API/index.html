@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GITHUB API</title>
+   
+    
+   
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link
+        href="https://cdn.datatables.net/v/bs5/dt-1.13.4/b-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/datatables.min.css"
+        rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/dt-1.13.4/b-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/datatables.min.js"></script>
+        
+       
+        
+        <link href="css/styleCust.css" rel="stylesheet" type="text/css" />
+        
+      
+        <style>
+           .back{
+            background-color: #06212e !important;
+           }         
+           
+           .containerForm{
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+            margin: 0;
+          
+           }
+           .flex-btn{
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+            margin: 5px;
+            
+           }
+           .btnw{
+            width: 40% !important;
+           }
+           
+           @media (300px <= width <=768px) {
+            .col-35{
+           
+            width: 100% !important;
+           }
+           .containerForm{
+            margin: 5px!important;
+           }
+           }
+          
+        </style>
+
+
+    </head>
+
+<body>
+    <!-- <div class="container">
+        <section id="add_form">
+            <div class="row my-3">
+                <h5>Add</h5>
+                <div class="col">
+                    <input id="name" type="text" class="form-control" placeholder="name">
+                </div>
+                <div class="col">
+                    <input id="amount" type="number" class="form-control" placeholder="amount">
+                </div>
+                <div class="col">
+                    <select id="category" class="form-select">
+                        <option disabled selected value="">category</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                    <button id="btn1" type="button" class="btn btn-primary">add</button>
+                </div>
+            </div>
+        </section>
+        <section id="edit_table">
+            <div id="d_table" class="row my-3"></div>
+            <div id="edit_form">
+                <div class="row my-3">
+                    <h5>Edit</h5>
+                    <div class="col">
+                        <input type="hidden" id="up_id">
+                        <input id="up_name" type="text" class="form-control" placeholder="name">
+                    </div>
+                    <div class="col">
+                        <input id="up_amount" type="number" class="form-control" placeholder="amount">
+                    </div>
+                    <div class="col">
+                        <select id="up_category" class="form-select">
+                            <option disabled selected value="">category</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col">
+                        <button id="btn2" type="button" class="btn btn-primary">edit</button>
+                        <button id="btn3" type="button" class="btn btn-danger">close</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> -->
+
+    <!--  -->
+
+    <div class="container containerForm">
+        <div id="dialog-form" title="CREATION D'UNE FACTURE" class="dialog-form">
+            
+            <form method="POST" class="needs-validation myform" novalidate
+                action="https://script.google.com/a/~/macros/s/AKfycbw26z64CsR-MYWhQMqnn4Mh16GljVb4sNgbELYtDMa5O6p56vpfIvY4pzODmVyGxZ599A/exec">
+
+
+                <div class="row block-row">
+
+                    <div class="col-35">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">ID</span>
+                            <input type="text" class="form-control" placeholder="Id" id="id" name="id"
+                                autocomplete="off" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-search" type="button" onclick="Search();">
+                                    <i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                            <div class="valid-feedback">L'identité est
+                                OK</div>
+                        </div>
+
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Date</span>
+                            <input type="date" class="form-control" placeholder="Date" name="date" id="date">
+                        </div>
+
+                    </div>
+
+                    <div class="col-60">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Produit</span>
+                            <input type="text" class="form-control" placeholder="Le produit" name="produit" id="produit" required
+                                minlength="4">
+
+                            <div class="invalid-feedback">
+                                Veuillez saisir le produit </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Superficie</span>
+                            <input type="number" class="form-control" placeholder="La superficie" name="superficie" id="superficie">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nature</span>
+                            <input type="text" class="form-control" placeholder="La nature du produit" name="nature" id="nature">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Site</span>
+                            <input type="text" class="form-control" placeholder="Le site" name="site" id="site">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="col-35">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Prix unit.</span>
+                            <input type="number" class="form-control" placeholder="Le prix unitaire" id="prixUnit" name="prixUnit"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">Le prix est
+                                OK</div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Prix total</span>
+                            <input type="number" class="form-control" placeholder="Le prix total" id="prixT" name="prixT"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">Le prix total est
+                                OK</div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Statut</span>
+                            <input type="text" class="form-control" placeholder="Le statut" id="statut" name="statut"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">Le statut est
+                                OK</div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Niveau</span>
+                            <input type="text" class="form-control" placeholder="Le niveau" id="niveau" name="niveau"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">Le niveau est
+                                OK</div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="col-35">
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Section.</span>
+                            <input type="number" class="form-control" placeholder="La section" id="section_" name="section"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">La section est
+                                OK</div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Lot</span>
+                            <input type="number" class="form-control" placeholder="Le lot" id="lot" name="lot"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">Le lot est
+                                OK</div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Parcelle</span>
+                            <input type="number" class="form-control" placeholder="La parcelle" id="plle" name="plle"
+                                autocomplete="off" required>
+                            <div class="valid-feedback">La parcelle est
+                                OK</div>
+                        </div>
+
+                        <div class="input-group mb-3">                          
+                            <input type="file" class="form-control" placeholder="Image1" id="image1" name="image1">                          
+                        </div>
+
+                    </div>
+                    
+                </div>
+      
+                    <div class="row-cols-2">
+                    <button type="submit" class="btn btn-primary btnw" id="btn1">Valider</button>
+                    <button type="submit" class="btn btn-success btnw" id="btn2">Modifier</button>  
+                    </div>
+                                                                                                            
+            </form>
+        </div>
+        <br>
+<br>
+<br>
+
+    </div>
+    <!--  -->
+    <div class="container">
+        <div class="card centrer cartTab">
+
+            <div class="card-body">
+                <div class="dt-buttons">
+                    <button class="dt-button" id="btnNew">NOUVEAU</button>
+                    <button class="dt-button" id="btnPdf">PDF</button>
+                    <button class="dt-button" id="btnExcel">EXCEL</button>
+                    <button class="dt-button" id="btnCsv">CSV</button>
+                    <button class="dt-button" id="btnCopie">COPIER</button>
+                    <button class="dt-button" id="btnMasque">MASQUER</button>
+                    <button class="dt-button" id="btnPrint">IMPRIMER</button>
+                    <button class="dt-button" id="btnPageL"><  ></button>
+                </div>
+                
+            </div>
+
+            <input type="text" class="form-control input-lg" placeholder="Rechercher..." id="searchBox">       
+        </div>
+    </div>
+
+    <div class="container">
+
+        <table id="example" class="table mt-m0 table-striped table-bordered w3-table-all" cellspacing="0" width="100%">
+            <thead class="back" style="white-space: nowrap">
+
+                <th scope="col" class="dt-center">PRODUIT</th>
+                <th scope="col" class="dt-center">SUPERFICIE</th>
+                <th scope="col" class="dt-center">NATURE</th>
+                <th scope="col" class="dt-center">PRIX UNITAIRE</th>
+                <th scope="col" class="dt-center">PRIX TOTAL</th>
+                <th scope="col" class="dt-center">SITE</th>
+                <th scope="col" class="dt-center">SECTION</th>
+                <th scope="col" class="dt-center">LOT</th>
+                <th scope="col" class="dt-center">PARCELLE</th>
+                <th scope="col" class="dt-center">STATUT</th>
+                <th scope="col" class="dt-center">NIVEAU</th>
+                <th scope="col" class="dt-center">DATE</th>
+                <th scope="col" class="dt-center"></th>
+                <th scope="col" class="dt-center"></th>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+
+</body>
+
+</html>
