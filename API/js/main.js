@@ -2,6 +2,8 @@ window.addEventListener("load", init, true);
 //https://script.google.com/macros/s/AKfycbxSfRWi-bmArc8u3mZV4FcGTTzKsuUHSlB3E5SR8RJt_kTLsigyZuPAogIgEBdyt0s9Og/exec
 //https://script.google.com/macros/s/AKfycbysu7f5CP4xtqVEypJa_tkOKnTFD7lBpIq-Soy10CZvEKftmxZE2JjxtRD9iAjVX-zlfg/exec
 var gData;
+var img = "https://res.cloudinary.com/dkltvxk6z/image/upload/v1738868814/Maison_j1wjwa.png"
+var imagOld;
 var Data;
 var DateF;
 var DateM;
@@ -590,12 +592,13 @@ function addRecord(){
     const niveau = $('#niveau').val()
     const date = DateF
     const image = $('#image1').val()
-    const imagOld = $('#imageOld').val()
+    imagOld = $('#imageOld').val()
     if(image == "")
     {
     image = imagOld
-    }else{
-      image = image
+    }else if(imagOld=="")
+    {
+      image = img
     }
       const obj = 
       {
