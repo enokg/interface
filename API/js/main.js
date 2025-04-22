@@ -1,8 +1,14 @@
 window.addEventListener("load", init, true);
+//https://script.google.com/macros/s/AKfycbxSfRWi-bmArc8u3mZV4FcGTTzKsuUHSlB3E5SR8RJt_kTLsigyZuPAogIgEBdyt0s9Og/exec
 //https://script.google.com/macros/s/AKfycbysu7f5CP4xtqVEypJa_tkOKnTFD7lBpIq-Soy10CZvEKftmxZE2JjxtRD9iAjVX-zlfg/exec
 var gData;
+var Data;
+var DateF;
+var DateM;
+let dateg;
 let tab = '';
-var url = 'https://script.google.com/a/~/macros/s/AKfycbysu7f5CP4xtqVEypJa_tkOKnTFD7lBpIq-Soy10CZvEKftmxZE2JjxtRD9iAjVX-zlfg/exec'
+let no;
+var url = 'https://script.google.com/macros/s/AKfycbwvS7CXAHXqEUXn46EwUXYdCK_GFs309LT_dnIfKo4HQFkznfBHKPDCy7qj15vcJJHo1g/exec'
 const url1 = url+'?action=getData'; 
 ///////////////////////////
 function init() {
@@ -75,12 +81,7 @@ function getElmts() {
               { "data": 'id' },
   
             ],
-            // '<input type="text" placeholder="Search ' + title + '" />',
-  
-            // dom: '<lf<t>ip>',
-            // dom: '<"top"i>rt<"bottom"flp><"clear">',
-          // dom: '<Bf><"clear">lirtp',
-          // filter: false,
+           
           autowidth: true,
           destroy: true,
           responsive: true,
@@ -118,11 +119,6 @@ function getElmts() {
             
           },
   
-  
-          //  pagingType: 'full',
-          //
-  
-          //
           order: [[0, 'desc']],
           pageLength: 10,
           lengthMenu:
@@ -142,21 +138,16 @@ function getElmts() {
                 searchable: true,
               },
               {
-                targets: [0],
+                targets: [11],
                 className: 'dt-body-center',
                 "render": function (data, type, row, meta) {
                   if (type === 'display') {
                     data = data.replace("00:00:00", "")
   
-                  }
-                  //'<div type="button" class="ico" onclick="foundId('+ data +')" no='+row[4]+'>' + '<i class="fa fa-duotone fa-pen-to-square modif"></i>' + '</div>'
-  
+                  }   
                   return data;
                 }
               },
-  
-  
-              //<i class='fa fa-sharp fa-solid fa-trash sup' onclick='deleteData(this);'>
   
               {
                 targets: [12],
@@ -164,10 +155,9 @@ function getElmts() {
                 className: 'dt-body-center',
                 "render": function (data, type, row, meta) {
                   if (type === 'display') {
-                    data = '<div type="button" class="ico" onclick="foundId(' + data + ')" no=' + row[4] + '>' + '<i class="fa fa-duotone fa-pen-to-square modif"></i>' + '</div>'
+                    data = '<div type="button" class="ico" onclick="foundId(' + data + ')" no=' + row[11] + '>' + '<i class="fa fa-duotone fa-pen-to-square modif"></i>' + '</div>'
   
                   }
-                  //'<div type="button" class="ico" onclick="foundId('+ data +')" no='+row[4]+'>' + '<i class="fa fa-duotone fa-pen-to-square modif"></i>' + '</div>'
   
                   return data;
                 }
@@ -179,8 +169,8 @@ function getElmts() {
                 className: 'dt-body-center',
                 "render": function (data, type, row, meta) {
                   if (type === 'display') {
-                    data = '<div type="button" class="ico" onclick="foundId(' + data + ')" no=' + row[5] + '>' + '<i class="fa fa-sharp fa-solid fa-trash"></i>' + '</div>';
-  
+                    data = '<div type="button" class="ico" onclick="foundSupId(' + data + ')" no=' + row[12] + ' >' + '<i class="fa fa-sharp fa-solid fa-trash"></i>' + '</div>';
+  //no=' + row[13] + '
                   }
                   return data;
                 }
@@ -315,10 +305,7 @@ function getElmts() {
           duration: 500
         },
         buttons:
-  
         {
-          // text: "Ok",
-  
           Fermer: function () {
             dialog.dialog("close");
           },
@@ -336,8 +323,6 @@ function getElmts() {
     });
   });
 
-//  
-
 function SetCurrentDate() {
     const date = new Date();
     console.log(date);
@@ -350,12 +335,44 @@ function SetCurrentDate() {
     if (m < 10) m = '0' + m;
   
     let CurrDate = y + '-' + m + '-' + d;
-  
+    DateF = d + '/' + m + '/' + y;
+    console.log(DateF);
+
     $('input[name="date"]').val(CurrDate);
-  
   } 
 
- 
+  function dateChange()
+  {
+    let getDate = $('input[name="date"]').val();
+    const Mdate = new Date(getDate);
+    console.log(Mdate);
+
+    let d = Mdate.getDate();
+    let m = Mdate.getMonth();
+    let y = Mdate.getFullYear();
+
+    if (d < 10) d = '0' + d;
+    if (m < 10) m = '0' + m;
+  
+    DateF = d + '/' + m + '/' + y;
+    let CurrDateFA = y + '-' + m + '-' + d;
+  
+    console.log(DateF);
+    console.log(CurrDateFA);
+  }
+
+  function dateG(dt){
+    let d_st = dt.substring(0,2)
+    let m_st = dt.substring(3,5)
+    let y_st = dt.substring(6,10)
+    dateg = y_st + '-' + m_st + '-' + d_st
+    
+    console.log(d_st)
+    console.log(m_st)
+    console.log(y_st)
+    console.log(dateg)
+}
+
   function SetCurrentId() {
     const date = new Date();
     console.log(date);
@@ -389,7 +406,7 @@ function addRecord(){
     const plle = $('#plle').val()
     const statut = $('#statut').val()
     const niveau = $('#niveau').val()
-    const date = $('#date').val()
+    const date = DateF
     const image = $('#image1').val()
 
   const obj =
@@ -424,20 +441,221 @@ function addRecord(){
       .then(data => {
         console.log(data)        
         if(data.status == "success"){          
-          // document.getElementById("name").value = "";
-          // document.getElementById("amount").value = "";
-          // document.getElementById("category").value = "";
-          // document.getElementById("btn1").disabled = false
-          getDataAPI()
+          viderChamps();
+          getDataTab();
+          let msg ="Données ajoutées avec succès !";
+          let msgtext = document.getElementById("message").innerHTML       
+          msgtext = msg;
+
+        }
+             
+      })
+      .catch(error => 
+        {
+        console.error(error);
+        document.getElementById("btn1").disabled = false
+      });
+    console.log(formData);
+  }
+  //
+
+  function delData(row_number){
+    const id = row_number
+    Swal.fire({
+      position: 'center',
+      title: 'Confirmez la suppression?',         
+      icon: 'warning',          
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Valider',
+      cancelButtonText: 'Annuler'
+      }).then((result) => {
+          if(result.isConfirmed){ 
+              Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        text: "Veuillez patienter...",
+                        showConfirmButton: false                                                    
+                      }) 
+                const obj = {
+                  id:id                       
+                }
+                const obj_json = JSON.stringify(obj)
+                  
+                let formData = new FormData();
+                formData.append('action', 'deleteData');
+                formData.append('data',obj_json);        
+                fetch(url, {
+                     method: 'POST',
+                     body: formData,       
+                })
+                .then(response => {        
+                      return response.json()})
+                .then(data => {
+                     console.log(data)        
+                     if(data.status == "success"){                            
+                         document.getElementById('example').deleteRow(('ROWNUMBER:'+row_number).rowIndex); 
+                         Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                text: "Supprimé avec succès!",
+                                timer:1000                     
+                          })
+                      }                               
+                })
+                .catch(error => {
+                  console.error(error);                         
+                });           
+            
+          }//if result.isConfirmed
+      })//then      
+  }
+  function foundSupId(id) {
+    no = id;
+    if (no !== "" && no !== undefined) {
+      delData(no)   
+    } 
+  }
+
+  function foundId(id) {
+    no = id;
+   
+    if (no !== "" && no !== undefined) {
+      editData(no)  
+    } 
+  }
+  
+  function editData(row_number)
+  {
+    const filterVal = Data.filter(r=>r['id'] === row_number)
+    const id = filterVal.map(r=>r['id'])[0]
+    const produit = filterVal.map(r=>r['produit'])[0]
+    const superficie = filterVal.map(r=>r['superficie'])[0]
+    const nature = filterVal.map(r=>r['nature'])[0]
+    const pu = filterVal.map(r=>r['pu'])[0]
+    const pt = filterVal.map(r=>r['pt'])[0]
+    const site = filterVal.map(r=>r['site'])[0]
+    const section = filterVal.map(r=>r['section'])[0]
+    const lot = filterVal.map(r=>r['lot'])[0]
+    const plle = filterVal.map(r=>r['plle'])[0]
+    const statut = filterVal.map(r=>r['statut'])[0]
+    const niveau = filterVal.map(r=>r['niveau'])[0]
+    const date = filterVal.map(r=>r['date'])[0]
+    const image = filterVal.map(r=>r['image'])[0]
+    // convert datte
+    let d_st = date.substring(0,2)
+    let m_st = date.substring(3,5)
+    let y_st = date.substring(6,10)
+    dateg = y_st + '-' + m_st + '-' + d_st
+    DateF = d_st + '/' + m_st + '/' + y_st;
+    // convert datte
+    // console.log(d_st)
+    // console.log(m_st)
+    console.log(DateF)
+    console.log(dateg)
+    //
+    $('#id').val(id)
+    $('#produit').val(produit)
+    $('#superficie').val(superficie)
+    $('#nature').val(nature)
+    $('#prixUnit').val(pu)
+    $('#prixT').val(pt)
+    $('#site').val(site)
+    $('#section').val(section)
+    $('#lot').val(lot)
+    $('#plle').val(plle)
+    $('#statut').val(statut)
+    $('#niveau').val(niveau)
+    $('#date').val(dateg)
+    $('#imageOld').val(image)
+
+    $('#dialog-form').dialog('open');
+
+  }
+
+  function submitEdit(){
+    document.getElementById("btn2").disabled = true 
+    const id = $('#id').val()
+    const produit = $('#produit').val()
+    const superficie = $('#superficie').val()
+    const nature = $('#nature').val()
+    const pu = $('#prixUnit').val()
+    const pt = $('#prixT').val()
+    const site = $('#site').val()
+    const section = $('#section').val()
+    const lot = $('#lot').val()
+    const plle = $('#plle').val()
+    const statut = $('#statut').val()
+    const niveau = $('#niveau').val()
+    const date = DateF
+    const image = $('#image1').val()
+    const imagOld = $('#imageOld').val()
+    if(image == "")
+    {
+    image = imagOld
+    }else{
+      image = image
+    }
+      const obj = 
+      {
+      id: id,
+      produit: produit,
+      superficie: superficie,
+      nature: nature,
+      pu: pu,
+      pt: pt,
+      site: site,
+      section: section,
+      lot: lot,
+      plle: plle,
+      statut: statut,
+      niveau: niveau,
+      date: date,
+      image: image
+      }
+    const obj_json = JSON.stringify(obj)
+
+    let formData = new FormData();
+      formData.append('action', 'editData');
+      formData.append('data',obj_json);        
+      fetch(url, {
+        method: 'POST',
+        body: formData,       
+      })
+      .then(response => {        
+        return response.json()})
+      .then(data => {
+        console.log(data)        
+        if(data.status == "success"){   
+          
+          document.getElementById("btn2").disabled = false
+          getDataTab()
+          //closeEditEl()
         }
              
       })
       .catch(error => {
         console.error(error);
-        document.getElementById("btn1").disabled = false
+        document.getElementById("btn2").disabled = false
       });
-    
+  }
+
+
+
+  //
+
+  function viderChamps(){
+document.getElementById("produit").value = "";
+          document.getElementById("superficie").value = "";
+          document.getElementById("nature").value = "";    
+          document.getElementById("btn1").disabled = false
   }
   document.getElementById('btn1').addEventListener("click",e=>{
     addRecord()
   })
+  document.getElementById('btn2').addEventListener("click",e=>{
+    submitEdit()
+  })
+
+

@@ -66,72 +66,11 @@
     </head>
 
 <body>
-    <!-- <div class="container">
-        <section id="add_form">
-            <div class="row my-3">
-                <h5>Add</h5>
-                <div class="col">
-                    <input id="name" type="text" class="form-control" placeholder="name">
-                </div>
-                <div class="col">
-                    <input id="amount" type="number" class="form-control" placeholder="amount">
-                </div>
-                <div class="col">
-                    <select id="category" class="form-select">
-                        <option disabled selected value="">category</option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col">
-                    <button id="btn1" type="button" class="btn btn-primary">add</button>
-                </div>
-            </div>
-        </section>
-        <section id="edit_table">
-            <div id="d_table" class="row my-3"></div>
-            <div id="edit_form">
-                <div class="row my-3">
-                    <h5>Edit</h5>
-                    <div class="col">
-                        <input type="hidden" id="up_id">
-                        <input id="up_name" type="text" class="form-control" placeholder="name">
-                    </div>
-                    <div class="col">
-                        <input id="up_amount" type="number" class="form-control" placeholder="amount">
-                    </div>
-                    <div class="col">
-                        <select id="up_category" class="form-select">
-                            <option disabled selected value="">category</option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row my-3">
-                    <div class="col">
-                        <button id="btn2" type="button" class="btn btn-primary">edit</button>
-                        <button id="btn3" type="button" class="btn btn-danger">close</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div> -->
-
-    <!--  -->
-
+    
     <div class="container containerForm">
         <div id="dialog-form" title="CREATION D'UNE FACTURE" class="dialog-form">
             
-            <form method="POST" class="needs-validation myform" novalidate
-                action="https://script.google.com/a/~/macros/s/AKfycbw26z64CsR-MYWhQMqnn4Mh16GljVb4sNgbELYtDMa5O6p56vpfIvY4pzODmVyGxZ599A/exec">
-
-
+            <div class="message" id="message"></div>
                 <div class="row block-row">
 
                     <div class="col-35">
@@ -141,7 +80,7 @@
                             <input type="text" class="form-control" placeholder="Id" id="id" name="id"
                                 autocomplete="off" required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary btn-search" type="button" onclick="Search();">
+                                <button class="btn btn-outline-secondary btn-search" type="button">
                                     <i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                             <div class="valid-feedback">L'identité est
@@ -151,7 +90,7 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Date</span>
-                            <input type="date" class="form-control" placeholder="Date" name="date" id="date">
+                            <input type="date" class="form-control" placeholder="Date" name="date" id="date" onchange="dateChange()">
                         </div>
 
                     </div>
@@ -221,7 +160,7 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Section.</span>
-                            <input type="number" class="form-control" placeholder="La section" id="section_" name="section"
+                            <input type="number" class="form-control" placeholder="La section" id="section" name="section"
                                 autocomplete="off" required>
                             <div class="valid-feedback">La section est
                                 OK</div>
@@ -247,6 +186,10 @@
                             <input type="file" class="form-control" placeholder="Image1" id="image1" name="image1">                          
                         </div>
 
+                        <div class="input-group mb-3">                           
+                            <input type="hidden" class="form-control" placeholder="Image old" id="imageOld" name="imageOld">                         
+                        </div>
+
                     </div>
                     
                 </div>
@@ -255,8 +198,7 @@
                     <button type="submit" class="btn btn-primary btnw" id="btn1">Valider</button>
                     <button type="submit" class="btn btn-success btnw" id="btn2">Modifier</button>  
                     </div>
-                                                                                                            
-            </form>
+           
         </div>
         <br>
 <br>
@@ -311,7 +253,7 @@
         </table>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/@riversun/simple-date-format/lib/simple-date-format.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
@@ -319,6 +261,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="./API/js/main.js" type="text/javascript"></script>
+    <script src="date.js"></script>
 
 </body>
 
