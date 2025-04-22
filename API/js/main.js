@@ -410,6 +410,12 @@ function addRecord(){
     const niveau = $('#niveau').val()
     const date = DateF
     const image = $('#image1').val()
+    
+    let imag = image
+    if(imag == "")
+    {
+      imag = img
+    }
 
   const obj =
   {
@@ -426,7 +432,7 @@ function addRecord(){
     statut: statut,
     niveau: niveau,
     date: date,
-    image: image
+    image: imag
   }
     const obj_json = JSON.stringify(obj)
     let formData = new FormData();
@@ -593,13 +599,16 @@ function addRecord(){
     const date = DateF
     const image = $('#image1').val()
     imagOld = $('#imageOld').val()
-    if(image == "")
+
+    let imag = image
+    if(imag == "" && imagOld !=="")
     {
-    image = imagOld
-    }else if(imagOld=="")
+      imag = imagOld
+    }else if(imagOld == "")
     {
-      image = img
+      imag = img
     }
+
       const obj = 
       {
       id: id,
@@ -615,7 +624,7 @@ function addRecord(){
       statut: statut,
       niveau: niveau,
       date: date,
-      image: image
+      image: imag
       }
     const obj_json = JSON.stringify(obj)
 
