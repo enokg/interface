@@ -10,7 +10,7 @@ var DateM;
 let dateg;
 let tab = '';
 let no;
-var url = 'https://script.google.com/macros/s/AKfycbwvS7CXAHXqEUXn46EwUXYdCK_GFs309LT_dnIfKo4HQFkznfBHKPDCy7qj15vcJJHo1g/exec'
+var url = 'https://script.google.com/macros/s/AKfycbzqg9a35VCovRHdxwmXR8h4r1-abk_TwbpR5-wIt3itQaTesPlkeDr16Fc7NNkyLXPy/exec'
 const url1 = url+'?action=getData'; 
 ///////////////////////////
 function init() {
@@ -410,7 +410,7 @@ function addRecord(){
     const niveau = $('#niveau').val()
     const date = DateF
     const image = $('#image1').val()
-    
+
     let imag = image
     if(imag == "")
     {
