@@ -442,7 +442,7 @@ function addRecord(){
      {
         method: 'POST',
         body: formData,
-        //mode:'no-cors'
+        mode:'no-cors'
       })
       .then(response => {        
         return response.json()})
@@ -496,7 +496,8 @@ function addRecord(){
                 formData.append('data',obj_json);        
                 fetch(url, {
                      method: 'POST',
-                     body: formData,       
+                     body: formData,
+                     mode:'no-cors'
                 })
                 .then(response => {        
                       return response.json()})
@@ -633,7 +634,8 @@ function addRecord(){
       formData.append('data',obj_json);        
       fetch(url, {
         method: 'POST',
-        body: formData,       
+        body: formData, 
+        mode:'no-cors'
       })
       .then(response => {        
         return response.json()})
