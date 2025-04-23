@@ -223,7 +223,7 @@ label,
             height: 20px;
             display: inline-block;     
             /* Change path to image*/
-            background-image: url(/assets/images/close-dialog.png);
+            background-image: url(close-dialog.png);
             background-position: center;
             background-repeat: no-repeat;
         }
